@@ -6,4 +6,6 @@ website:
   navbar:
     left:
       - href: 1_Basico.html
-        text: 1. Introducción a R
+        text: Intro-R
+      - href: 3_Zotero.html
+        text: Zotero
