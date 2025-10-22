@@ -1,19 +1,38 @@
+# _quarto.yml
 project:
   type: website
   output-dir: docs
 
-format:
-  html:
-    theme: cosmo
-    css: styles.css
-
 website:
-  title: "Aprendiendo R"
+  title: "Aprendiendo R by DEV"
+  description: "Projects and tutorials"
+  site-url: https://deve105.github.io/RTutoriales/
+  repo-url: https://deve105.github.io/me
+  repo-actions: [edit, issue, source]
   navbar:
+    background: primary
+    search: true
     left:
       - href: index.html
-        text: Intro-R
-      - href: 3_Zotero.html
+        text: Home
+      - href: 3_Zotero.qmd
         text: Zotero
-      - href: 5_Sample.html
+      - href: 5_Sample.qmd
         text: Muestreo
+
+    right:
+      - icon: github
+        href: https://github.com/deve105
+
+format:
+  html:
+    theme: [cosmo, darkly]
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-link: true
+    
+execute:
+  echo: false
+  warning: false
