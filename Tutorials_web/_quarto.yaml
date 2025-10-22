@@ -9,3 +9,5 @@ website:
         text: Intro-R
       - href: 3_Zotero.html
         text: Zotero
+      - href: 5_Sample.html
+        text: Muestreo

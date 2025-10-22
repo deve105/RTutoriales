@@ -47,5 +47,19 @@
     "title": "Aprendiendo R",
     "section": "",
     "text": "https://datacarpentry.github.io/R-ecology-lesson-alternative/index.html"
+  },
+  {
+    "objectID": "5_Sample.html",
+    "href": "5_Sample.html",
+    "title": "Aprendiendo R",
+    "section": "",
+    "text": "¿Por qué es necesario una muestra?\n\n\n\n\n\n\nPara rechazar nuestra hipótesis nula no es necesario colectar toda la población (tiempo, dinero y recursos)\nPuede ser antiético."
+  },
+  {
+    "objectID": "5_Sample.html#muestra-para-proporciones-estudios-transversales-prevalencias-encuestas",
+    "href": "5_Sample.html#muestra-para-proporciones-estudios-transversales-prevalencias-encuestas",
+    "title": "Aprendiendo R",
+    "section": "Muestra para Proporciones: Estudios transversales (prevalencias, encuestas)",
+    "text": "Muestra para Proporciones: Estudios transversales (prevalencias, encuestas)\n\nCaso 1: La prevalencia de infección por Strongyloides es del 12% en el Perú, sin embargo, un estudio tiene como hipótesis que la prevalencia de Strongyloides en regiones rurales es mayor al 20%. ¿Cuántas personas de zonas rurales se necesitan para demostrar la hipótesis?\n\n\n\n\n\n\n\nAnálisis\n\n\n\n\n\n\nHipótesis nula: La prevalencia de infección por Strongyloides es 12%.\nHipótesis alterna: La prevalencia de infección por Strongyloides en zonas rurales es 20%.\n\n\npacman::p_load(pwr)\npwr.p.test(h = ES.h(p1 = 0.20, p2 = 0.12),\n           n = NULL,\n           sig.level = 0.05,\n           power = 0.80,\n           alternative = \"greater\")\n\n\n     proportion power calculation for binomial distribution (arcsine transformation) \n\n              h = 0.219812\n              n = 127.9574\n      sig.level = 0.05\n          power = 0.8\n    alternative = greater\n\n\n\n\n\n\n\n\n\n\n\nNivel de Significancia y Poder (sig.level, power)\n\n\n\n\n\n\nPrevalencia estimada (antecedentes), puede ser 50% en el peor de los casos.\nNivel de error que podríamos aceptar al calcular la frecuencia/prevalencia.\n\n\n\n\n\n1. n.for.survey\n\nEstudio Longitudinal - Variable Dependiente Continua (t-test)\nEjemplo: En un estudio se evalua el efecto del ejercicio en los niveles de hemoglobina glicosilada durante 1 año.\n2 grupos: grupo A) con ejercicio prescrito; grupo B) sin ejercicio regular.\nMagnitud del efecto (Cohen’s d): diferencia de medianas al inicio entre la desviación estándar global.\nTip: Desviación estándar de un antecedente. Rango máximo/4 (Ejemplo: HbA1C oscila entre 5 y 17)"
   }
 ]
