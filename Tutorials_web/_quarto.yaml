@@ -5,7 +5,7 @@ website:
   title: "Aprendiendo R"
   navbar:
     left:
-      - href: 1_Basico.html
+      - href: index.html
         text: Intro-R
       - href: 3_Zotero.html
         text: Zotero
