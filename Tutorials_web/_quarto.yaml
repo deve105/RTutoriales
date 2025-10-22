@@ -5,7 +5,5 @@ website:
   title: "Aprendiendo R"
   navbar:
     left:
-      - href: index.html
-        text: Mi perfil
       - href: 1_Basico.html
-        text: Introducción a R
+        text: 1. Introducción a R
