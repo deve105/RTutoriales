@@ -17,7 +17,7 @@ website:
         text: Home
       - href: 3_Zotero.qmd
         text: Zotero
-      - href: 5_Sample.qmd
+      - href: 5_Sample.html
         text: Muestreo
 
     right:
