@@ -129,6 +129,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./3_Zotero.html"> 
 <span class="menu-text">Zotero</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./5_Sample.html" aria-current="page"> 
+<span class="menu-text">Muestreo</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -147,6 +151,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="cálculo-muestral" class="level1">
+<h1>Cálculo Muestral</h1>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -166,6 +172,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Resumen de Funciones en <strong><em>pwr</em></strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -220,13 +238,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<section id="muestra-para-proporciones-estudios-transversales-prevalencias-encuestas" class="level2">
-<h2 class="anchored" data-anchor-id="muestra-para-proporciones-estudios-transversales-prevalencias-encuestas">Muestra para Proporciones: Estudios transversales (prevalencias, encuestas)</h2>
+</div>
+</div>
+</div>
+<section id="muestra-para-proporciones-1-grupo-estudios-transversales-prevalencias-encuestas" class="level2">
+<h2 class="anchored" data-anchor-id="muestra-para-proporciones-1-grupo-estudios-transversales-prevalencias-encuestas">1. Muestra para Proporciones (1 grupo): Estudios transversales (prevalencias, encuestas)</h2>
 <ul>
 <li>Caso 1: La prevalencia de infección por Strongyloides es del 12% en el Perú, sin embargo, un estudio tiene como hipótesis que la prevalencia de Strongyloides en regiones rurales es mayor al 20%. ¿Cuántas personas de zonas rurales se necesitan para demostrar la hipótesis?</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -235,7 +256,7 @@ Análisis
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Hipótesis nula: La prevalencia de infección por Strongyloides es 12%.</li>
@@ -263,7 +284,7 @@ Análisis
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -272,24 +293,74 @@ Nivel de Significancia y Poder (<em>sig.level, power</em>)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="images/paste-3.png" class="img-fluid"></p>
+<p>Sí solo evaluamos un incremento o disminución, se puede utilizar solo a una cola (alfa).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="muestra-para-proporciones-2-grupos-estudios-analíticos" class="level2">
+<h2 class="anchored" data-anchor-id="muestra-para-proporciones-2-grupos-estudios-analíticos">2. Muestra para Proporciones (2 grupos): Estudios analíticos</h2>
+<p>En un estudio queremos comparar la frecuencia de hipersomnio en alumnos con o sin uso de redes sociales mayor a 6horas al día. Se estima que la frecuencia de insomnio en alumnos con uso de redes sociales mayor a 6h es de 30%, mientras que en alumnos sin uso de redes sociales es del 10% (basado en una Tesis de la universidad). ¿Cuántos alumnos se necesitan por grupo?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Análisis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li>Prevalencia estimada (antecedentes), puede ser 50% en el peor de los casos.</li>
-<li>Nivel de error que podríamos aceptar al calcular la frecuencia/prevalencia.</li>
+<li>Hipótesis nula: La frecuencia de alumnos con insomnio no es mayor (o &lt;20%) entre los que usan redes sociales por más de 6h.</li>
+<li>Hipótesis alterna: La frecuencia de alumnos con insomnio es mayor (o &lt;20%) entre los que usan redes sociales por más de 6h.</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(pwr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.2p.test</span>(<span class="at">h =</span> <span class="fu">ES.h</span>(<span class="at">p1 =</span> <span class="fl">0.30</span>, <span class="at">p2 =</span> <span class="fl">0.10</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">n =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">power =</span> <span class="fl">0.80</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Difference of proportion power calculation for binomial distribution (arcsine transformation) 
+
+              h = 0.5157784
+              n = 59.00793
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: same sample sizes</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.2p2n.test</span>(<span class="at">h =</span> <span class="fu">ES.h</span>(<span class="at">p1 =</span> <span class="fl">0.30</span>, <span class="at">p2 =</span> <span class="fl">0.10</span>),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">n1 =</span> <span class="dv">80</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">power =</span> <span class="fl">0.80</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     difference of proportion power calculation for binomial distribution (arcsine transformation) 
+
+              h = 0.5157784
+             n1 = 80
+             n2 = 46.74262
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: different sample sizes</code></pre>
 </div>
 </div>
 </div>
-<section id="n.for.survey" class="level3">
-<h3 class="anchored" data-anchor-id="n.for.survey">1. <strong><em>n.for.survey</em></strong></h3>
-<ol type="1">
-<li><p>Estudio Longitudinal - Variable Dependiente Continua (t-test)</p>
-<p>Ejemplo: En un estudio se evalua el efecto del ejercicio en los niveles de hemoglobina glicosilada durante 1 año.</p>
-<p>2 grupos: grupo A) con ejercicio prescrito; grupo B) sin ejercicio regular.</p>
-<p>Magnitud del efecto (Cohen’s d): diferencia de medianas al inicio entre la desviación estándar global.</p>
-<p>Tip: Desviación estándar de un antecedente. Rango máximo/4 (Ejemplo: HbA1C oscila entre 5 y 17)</p></li>
-</ol>
+</div>
+</div>
 
 
 </section>
