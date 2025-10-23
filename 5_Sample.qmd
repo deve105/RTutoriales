@@ -71,6 +71,7 @@ pwr.2p.test(h = ES.h(p1 = 0.30, p2 = 0.10),
            power = 0.80,
            alternative = "two.sided")
 
+## En caso ambos grupos puedan tener participantes diferentes
 pwr.2p2n.test(h = ES.h(p1 = 0.30, p2 = 0.10),
            n1 = 80,
            sig.level = 0.05,
