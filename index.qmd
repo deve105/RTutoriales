@@ -117,6 +117,7 @@ BiocManager::install() #Actualizar paquetes
 
 ## 3. Trabajando en R
 
+R funciona como una calculadora básica: `+, -, /, *, sqrt, min(), sum(), max()`
 Es mejor trabajar siempre creando proyectos independientes para asegurar que sea reproducible. Adicionalmente, es necesario mantener una configuración básica:
 
 ![](images/paste-2.png)
@@ -134,6 +135,7 @@ Es mejor trabajar siempre creando proyectos independientes para asegurar que sea
 -   Comandos útiles:
 
     -   `getwd()`: Cuál es la dirección actual?
+    -   `dir()`: Una lista con todos los archivos en el directorio
     -   `setwd()`: Definir la dirección
     -   `dir()`: Generar una lista de archivos y carpetas en el *wd*.
     -   `ls()`: Genera una lista de objetos abiertos en R.
@@ -155,6 +157,8 @@ setwd("/Users/denriquez/Documents/Rstats/RepoGit/R-estudiantes")
 getwd()  
 #Lista de archivos en wd
 dir()
+# Para ayuda ? delate de la función
+?dir()
 
 ```
 
@@ -180,7 +184,52 @@ Tipos de Objetos:
 -   **Factores:** Un vector con niveles.
 
 -   **Obj. Avanzados:** S3, S4 (Listas con información interconectada). Ejemplo: plots o información genética.
+-   
 
+```{r}
+vectorExample <- c("male","female","female","female")
+factorExample <- factor(vectorExample)
+levels(factorExample)
+summary(factorExample)
+
+factorExample <- factor(c("small","big","big","small"),
+                        ordered=TRUE,levels=c("small","big"))
+factorExample[1] > factorExample[2]
+```
+
+```{r}
+## List
+firstElement <- c(1,2,3,4)
+secondElement <- matrix(1:10,nrow=2,ncol=5)
+thirdElement <- data.frame(colOne=c(1,2,4,5),colTwo=c("One","Two","Three","Four"))
+
+myList <- list(firstElement,secondElement,thirdElement)
+myNamedList <- list(First=firstElement,Second=secondElement,
+                    Third=thirdElement)
+
+myNamedList <- list(First=firstElement,Second=secondElement,
+                    Third=thirdElement)
+myNamedList <- c(myNamedList,list(fourth=c(4,4)))
+myNamedList[c(1,4)]
+```
+
+```{r}
+myNamedList <- list(First=c(1,2,3),Second=c(2,6,7),Third=c(1,4,7))
+flatList <- unlist(myNamedList)
+listAsMat <- matrix(flatList,
+                    nrow=length(myNamedList),
+                    ncol=3,
+                    byrow=T,
+                    dimnames=list(names(myNamedList)))
+listAsMat
+
+# The rio package for working with excel, spss, etc
+export()
+import()
+## save and write list to use later
+my_newlist <- readRDS("my_list.rds")
+saveRDS(myList, "my_list.rds")
+```
 ### 3.3 Operaciones básicas
 
 -   Crear un vector (`<-` o `=`), concatenar (`c()`) y mostrar resultados. \*para valores repetidos: `rep`
@@ -194,9 +243,20 @@ Tipos de Objetos:
 #| eval: false
 #| warning: false
 #| message: false
-
+# c() para vectores "concatenar"
 dev<-c(1,2,3,4,5,6,7,8,9,10)
 dev
+length(dev)
+# El objeto puede ser variable (tener cuidado con esto)
+dev <- seq(from=1,to=5,by=2)
+dev = rep(c(1,5,10),3)
+
+## Indexing []
+dev[2]
+dev[c(1,3)]
+dev[-2]
+
+# vectores pueden tener nombres: names(dev)
 ```
 :::
 
@@ -229,6 +289,10 @@ dev[4] #Seleccionar el 4to elemento
 dev[5:8] #Seleccionar del 5to al 8vo elemento.
 dev2<-dev[-6] #Eliminar el 6to elemento
 dev2 #Mostrar el resultado de la operación anterior
+
+unique(dev) # valores unicos
+## También es posible usar un vector lógico c(T, F, T, F) o %in%
+## grepl("nombrex", dev, ignore.case=T) o grep en caso de obtener indices
 ```
 :::
 
@@ -267,7 +331,7 @@ dev1<-c(dev.m[1,]) #reemplazar vector por la fila 1
 dev1
 rm(dev1) #elimina dev1
 dev1<-rep(x=10, each=5) #5 repeticiones del valor 10
-dev1[dev1==10]<-"diez" #Operacion logica
+dev1[dev1==10]<-"diez" #Operacion logica (==, >, <, & ambos T, | o, !convierte en F/T)
 dev1
 ```
 :::
@@ -283,6 +347,8 @@ dev1
 
 summary(dev.m) #Estadísticas básicas
 ```
+
+Ojo: NA (not available), NaN (not a number)
 :::
 
 ::: {.callout-note collapse="true"}
@@ -311,10 +377,33 @@ t(dev.m) #Transponer elementos
 #| warning: false
 #| message: false
 
+wideMatrix <- matrix(1:10, nrow=2, ncol=5, byrow=TRUE)
+dim(wideMatrix)
+nrow(wideMatrix)
+ncol(wideMatrix)
 dev.m2<-matrix(rep(c(1:6)), nrow=6, ncol=6)
 diag(dev.m2) #diagonal de la matrix
 diag(dev.m2)<-rep(x=c(1,2), times=3)
 dev.m2
+
+```
+
+```{r}
+x <- 1:5
+y <- 11:15
+z <- 21:22
+matrix1 <- cbind(x,y)
+matrix2 <- rbind(matrix1,z)
+matrix2
+
+namedMatrix <- matrix(1:10,ncol=5,nrow=2)
+colnames(namedMatrix) <- paste("Column",1:5,sep="_")
+rownames(namedMatrix) <- paste("Row",1:2,sep="_")
+namedMatrix[2,3] ## Indexing
+namedMatrix[,3]
+namedMatrix[,"Column_1"]
+namedMatrix[,3] < 4
+namedMatrix[,2] <- 1
 ```
 :::
 
@@ -338,6 +427,36 @@ dev.df[dev.df==6]<-"NA" #remplazar 6 por NA (not available)
 dev.df$V6 #Acceder a la variable o ex-columna 6
 ```
 
+```{r}
+patientName <- c("patient1","patient2","patient3","patient4")
+patientType <- factor(rep(c("male","female"),2))
+survivalTime <- c(1,30,2,20)
+dfExample <- data.frame(Name=patientName, Type=patientType, Survival_Time=survivalTime)
+dfExample
+dfExample[dfExample$Survival_Time < 10,]
+dfExample$newColumn <- rep("newData",nrow(dfExample))
+dfExample
+dfExample[dfExample[,"Survival_Time"] < 10,"Survival_Time"] <- 0
+dfExample
+
+dfExample <- data.frame(Name=patientName,Type=patientType,
+                        Survival_Time=survivalTime, stringsAsFactors = T)
+
+levels(dfExample[,"Type"]) <- c(levels(dfExample[,"Type"]) ,
+                                "other")
+
+dfExample[1,"Type"] <- "other"
+dfExample
+dfExample$Survival_Time[order(dfExample$Survival_Time, decreasing=F, na.last=T)]
+dfExample[order(dfExample$Survival_Time, decreasing=F, na.last=T),]
+```
+
+```{r}
+dfExample2 <- data.frame(Name=patientName[1:3],
+                        height=c(6.1,5.1,5.5))
+mergedDF <- merge(dfExample,dfExample2,by=1,all=F)
+mergedDF                     
+```
 ::: {.callout-tip collapse="true"}
 ## Limpiar el entorno
 ```{r}
@@ -437,3 +556,82 @@ Para usar ANOVA es necesario \>2 grupos y distribuciòn normal. Ha: Existen dife
 aov(formula=iris[["Sepal.Length"]]~iris[["Species"]])
 ```
 :::
+
+## Advanced functions
+
+## Conditional branching
+```{r}
+x <- 10
+y <- 4
+if(x > y){
+  message("The value of x is ",x," which is greater than ", y)
+}
+```
+
+## else conditional 
+
+```{r}
+x <- 5
+if(x > 5){
+  message(x," is greater than 5")
+  }else if(x == 5){
+    message(x," is 5")
+  }else{
+    message(x, " is less than 5")
+  }
+x <- 1:10
+ifelse(x <= 3,"lessOrEqual","more") 
+```
+
+## Loops
+
+```{r}
+x <- toupper(letters[1:5])
+for(i in x){
+  message(i," ", appendLF = F)
+}
+```
+
+```{r}
+geneName <- c("Ikzf1","Myc","Igll1")
+expression <- c(10.4,4.3,6.5)
+1:length(geneName)
+for(i in 1:length(geneName)){
+  message(geneName[i]," has an RPKM of ",expression[i])
+}
+```
+
+## Functions for loops
+
+sapply (smart apply)  funciona como lapply pero devuelve el resultado más apropiado para el tipo de data. 
+
+```{r}
+exampleVector <- c(1,2,3,4,5)
+exampleList <- list(1,2,3,4,5)
+sapply(exampleVector, mean, na.rm=T)
+
+exampleList <- list(row1=1:5, 
+                    row2=6:10, 
+                    row3=11:15)
+lapply(exampleList, quantile)
+sapply(exampleList, quantile)
+
+exampleList <- list(df=data.frame(sample=paste0("patient",1:2), data=c(1,12)),
+                    vec=c(1,3,4,5))
+sapply(exampleList, summary)
+```
+
+## Plotting
+
+```{r}
+plot(merge_df[,c(4,5)])
+boxplot(Expression ~ pathway, merge_df)
+
+library(ggplot2)
+
+ggplot(merge_df, aes(x=pathway, y=Expression, fill=pathway))+
+  geom_violin()+
+  geom_jitter(width=0.1)+
+  theme_linedraw()+
+  ggtitle("Gene Expression in Glycolyis and TGFb pathways")
+```
