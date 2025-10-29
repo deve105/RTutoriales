@@ -79,3 +79,159 @@ pwr.2p2n.test(h = ES.h(p1 = 0.30, p2 = 0.10),
            alternative = "two.sided")
 ```
 :::
+
+## 3. EpiR para el cálculo muestral
+
+Otra forma más rápida de calcular el tamaño muestral es usando `EpiR`
+
+```{r}
+install.packages("epiR")
+library(epiR)
+```
+
+### 3.1 Estudios de Prevalencia
+
+Por ejemplo: Se desea determinar la prevalencia por Dengue en Ica. 
+La prevalencia en Perú es de 15% durante el 2025. ¿Cuántas personas deben ser evaluadas en Ica para tener 95% de certeza que la estimación estrá dentro del margen del +-20% del valor real del Perú? (En otras palabras entre el 12 al 18%)
+
+::: {.callout-note collapse="true"}
+## Muestra para prevalencias 
+
+* Sin conocer la población.
+```{r}
+epi.sssimpleestb(
+    N = NA, 
+    Py = 0.15, 
+    epsilon = 0.20, 
+    error = "relative", 
+    se = 1, sp = 1, 
+    nfractional = FALSE, 
+    conf.level = 0.95)
+```
+
+* Si sabemos que la población de la comunidad a evaluar es 5,000 habitantes (corrección finita)
+
+```{r}
+epi.sssimpleestb(
+    N = 5000, 
+    Py = 0.15, 
+    epsilon = 0.20, 
+    error = "relative", 
+    se = 1, 
+    sp = 1, 
+    nfractional = FALSE, 
+    conf.level = 0.95
+    )
+```
+
+:::
+
+### 3.2 Estudios analíticos
+
+::: {.callout-note collapse="true"}
+## Muestra para Cohortes Prospectivas
+
+Se desea evaluar el impacto del uso nocturno de dispositivos electrónicos en el rendimiento académico. Los alumnos tendrán una evaluación basal y serán divididos en 2 grupos: 1) alumnos con uso de dispositivos electrónicos previo a dormir; 2) alumnos sin uso de dispositivos electrónicos previo a dormir. Se desea tener un 80% certeza de poder detectar un incremento de 1.5 veces el rendimiento académico malo con un nivel de confiabilidad del 0.05. Una tesis previa estimó la incidencia de rendimiento académico malo fue 20/100 .
+
+```{r}
+epi.sscohortt(irexp1 = 20/100, irexp0 = 30/100, FT = 5, n = NA, power = 0.80, r = 1, 
+   design = 1, sided.test = 2, nfractional = FALSE, conf.level = 0.95)$n.total
+```
+:::
+
+## Muestra para Casos y Controles
+
+Se desea evaluar evaluar la relación entre el consumo de marihuana y la depresión en estudiantes universitarios. Se comparará un grupo de alumnos diagnósticados con depresión y un grupo control de alumnos de la misma universidad. ¿Cuántos alumnos son necesarios para detectar un odds ratio (incremento) de 2, con una certeza del 80% de encontrar dicho incremento (poder), y nivel de confiabilidad de 0.05? Estudios previos determinaron que el consumo de marihuana es del 10% en estudiantes.
+
+::: {.callout-note collapse="true"}
+```{r}
+epi.sscc(p1 = NA, OR =2, p0 = 10/100, n = NA, power = 0.80, r = 1, phi.coef = 0,
+   design = 1, sided.test = 2, nfractional = FALSE, conf.level = 0.95)$n.total
+```
+:::
+
+### 3.3 Estudios Experimentales
+
+## Muestra para estudios de no inferioridad
+
+Se desea evaluar evaluar la eficacia de dos medicamentos para el tratamiento de la hipertensión. Asumiendo que la eficacia del medicamento A es del 85%, mientras que el medicamento B es del 65%. Se considera que una diferencia menor del 10% no es clínicamente relevante. Asumiendo un nivel de confiabilidad a una cola del 5% (0.05) y poder del 80%, ¿Cuántos pacientes se necesitan incluir en este estudio? 
+
+::: {.callout-note collapse="true"}
+```{r}
+epi.ssninfb(treat = 0.85, control = 0.65, delta = 0.10, n = NA, 
+   r = 1, power = 0.80, nfractional = FALSE, alpha = 0.05)$n.total
+```
+:::
+
+## Estimación de un parámetro poblacional (one-stage cluster sampling)
+
+Se desea conocer la prevalencia real de HTLV-1 en zonas rurales de Ica. Se realizará un estudio transversal, donde todas los comunidades del departamento de Ica serán muestreados. Todas las familias dentro de cada comunidad serán muestreados (120 personas por comunidad). Un estudio previo determino que el coeficiente intracluster de correlación es del 0.2 (intracluster correlation coefficient). Si se desea saber con 95% de confiabilidad que el tamizaje estime la prevalencia real dentro del margen del 10% del valor real de la población. ¿Cuantas comunidades se necesitan muestrear? Un estudio previo mostro prevalencia del 15%.
+
+::: {.callout-note collapse="true"}
+```{r}
+epi.ssclus1estb(b = 120, Py = 0.15, epsilon = 0.10, error = "relative", rho = 0.20, conf.level = 0.95)$n.psu
+
+epi.ssclus1estb(b = c(120,35), Py = 0.15, epsilon = 0.10, error = "relative", rho = 0.20, conf.level = 0.95)$n.psu
+
+```
+:::
+
+## Estimación de un parámetro poblacional (two-stage cluster sampling)
+
+Tenemos data jerarquica (Ica tiene comunidades[1º] e individuos[2º]).
+Prevalencia de HTLV-1 está estimada entre 3-5%. Coeficiente de correlación intracluster es de 0.02, nivel de confiabilidad del 95%, estimación de la prevalencia entre el 5% del valor real de la población y 20 individuos por comunidad.
+
+::: {.callout-note collapse="true"}
+```{r}
+# From first principles:
+n.crude <- epi.sssimpleestb(N = NA, Py = 0.5, epsilon = 0.05 / 0.20, 
+   error = "relative", se = 1, sp = 1, nfractional = FALSE, conf.level = 0.95)
+
+# A total of 246 individuals (SSUs) need to be enrolled into the study. Calculate the design effect:
+rho <- 0.02; b <- 20
+
+D <- rho * (b - 1) + 1; D
+
+# The design effect is 1.38 so our crude sample size estimate needs to be increased by a factor of 1.38.
+
+n.adj <- ceiling(n.crude * D)
+n.adj
+#> [1] 340
+# After accounting for lack of independence in the data a total of 340 individuals (SSUs) need to be enrolled into the study. 
+
+# How many villages (PSUs) are required?
+ceiling(n.adj / b)
+
+# A total of 5 villages need to be sampled to meet the requirements of the study.
+
+# Do all of the above using epi.ssclus2estb:
+epi.ssclus2estb(b = 10, Py = 0.10, epsilon = 0.05 / 0.20, error = "relative", 
+   rho = 0.02, nfractional = FALSE, conf.level = 0.95)
+
+```
+:::
+
+::: {.callout-note collapse="true"}
+```{r}
+n.crude <- epi.sssimpleestb(N = NA, Py = 0.15, epsilon = 0.20,
+   error = "relative", se = 1, sp = 1, nfractional = FALSE, conf.level = 0.95)
+n.crude
+#> [1] 545
+
+rho <- 0.09; b <- 10
+D <- rho * (b - 1) + 1; D
+#> [1] 1.81
+
+n.adj <- ceiling(n.crude * D)
+n.adj
+#> [1] 987
+
+# Similar to the example above, we can do all of these calculations using epi.ssclus2estb:
+epi.ssclus2estb(b = 10, Py = 0.15, epsilon = 0.20, error = "relative", 
+   rho = 0.09, nfractional = FALSE, conf.level = 0.95)
+```
+::: 
+
+## References
+
+[epiR sample size](https://cran.r-project.org/web/packages/epiR/vignettes/epiR_sample_size.html)
