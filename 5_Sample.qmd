@@ -85,6 +85,7 @@ pwr.2p2n.test(h = ES.h(p1 = 0.30, p2 = 0.10),
 Otra forma más rápida de calcular el tamaño muestral es usando `EpiR`
 
 ```{r}
+#| eval: false
 install.packages("epiR")
 library(epiR)
 ```
@@ -99,6 +100,7 @@ La prevalencia en Perú es de 15% durante el 2025. ¿Cuántas personas deben ser
 
 * Sin conocer la población.
 ```{r}
+#| eval: false
 epi.sssimpleestb(
     N = NA, 
     Py = 0.15, 
@@ -112,6 +114,7 @@ epi.sssimpleestb(
 * Si sabemos que la población de la comunidad a evaluar es 5,000 habitantes (corrección finita)
 
 ```{r}
+#| eval: false
 epi.sssimpleestb(
     N = 5000, 
     Py = 0.15, 
@@ -134,7 +137,8 @@ epi.sssimpleestb(
 Se desea evaluar el impacto del uso nocturno de dispositivos electrónicos en el rendimiento académico. Los alumnos tendrán una evaluación basal y serán divididos en 2 grupos: 1) alumnos con uso de dispositivos electrónicos previo a dormir; 2) alumnos sin uso de dispositivos electrónicos previo a dormir. Se desea tener un 80% certeza de poder detectar un incremento de 1.5 veces el rendimiento académico malo con un nivel de confiabilidad del 0.05. Una tesis previa estimó la incidencia de rendimiento académico malo fue 20/100 .
 
 ```{r}
-epi.sscohortt(irexp1 = 20/100, irexp0 = 30/100, FT = 5, n = NA, power = 0.80, r = 1, 
+#| eval: false
+epi.sscohortt(irexp1 = 20/100, irexp0 = 40/100, FT = 5, n = NA, power = 0.80, r = 1, 
    design = 1, sided.test = 2, nfractional = FALSE, conf.level = 0.95)$n.total
 ```
 :::
@@ -145,7 +149,8 @@ Se desea evaluar evaluar la relación entre el consumo de marihuana y la depresi
 
 ::: {.callout-note collapse="true"}
 ```{r}
-epi.sscc(p1 = NA, OR =2, p0 = 10/100, n = NA, power = 0.80, r = 1, phi.coef = 0,
+#| eval: false
+epi.sscc(p1 = NA, OR = 10, p0 = 10/100, n = NA, power = 0.80, r = 1, phi.coef = 0,
    design = 1, sided.test = 2, nfractional = FALSE, conf.level = 0.95)$n.total
 ```
 :::
@@ -158,6 +163,7 @@ Se desea evaluar evaluar la eficacia de dos medicamentos para el tratamiento de 
 
 ::: {.callout-note collapse="true"}
 ```{r}
+#| eval: false
 epi.ssninfb(treat = 0.85, control = 0.65, delta = 0.10, n = NA, 
    r = 1, power = 0.80, nfractional = FALSE, alpha = 0.05)$n.total
 ```
@@ -169,6 +175,7 @@ Se desea conocer la prevalencia real de HTLV-1 en zonas rurales de Ica. Se reali
 
 ::: {.callout-note collapse="true"}
 ```{r}
+#| eval: false
 epi.ssclus1estb(b = 120, Py = 0.15, epsilon = 0.10, error = "relative", rho = 0.20, conf.level = 0.95)$n.psu
 
 epi.ssclus1estb(b = c(120,35), Py = 0.15, epsilon = 0.10, error = "relative", rho = 0.20, conf.level = 0.95)$n.psu
@@ -183,6 +190,7 @@ Prevalencia de HTLV-1 está estimada entre 3-5%. Coeficiente de correlación int
 
 ::: {.callout-note collapse="true"}
 ```{r}
+#| eval: false
 # From first principles:
 n.crude <- epi.sssimpleestb(N = NA, Py = 0.5, epsilon = 0.05 / 0.20, 
    error = "relative", se = 1, sp = 1, nfractional = FALSE, conf.level = 0.95)
@@ -213,6 +221,7 @@ epi.ssclus2estb(b = 10, Py = 0.10, epsilon = 0.05 / 0.20, error = "relative",
 
 ::: {.callout-note collapse="true"}
 ```{r}
+#| eval: false
 n.crude <- epi.sssimpleestb(N = NA, Py = 0.15, epsilon = 0.20,
    error = "relative", se = 1, sp = 1, nfractional = FALSE, conf.level = 0.95)
 n.crude

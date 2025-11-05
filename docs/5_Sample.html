@@ -113,6 +113,23 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
 <li><a href="#muestra-para-proporciones-1-grupo-estudios-transversales-prevalencias-encuestas" id="toc-muestra-para-proporciones-1-grupo-estudios-transversales-prevalencias-encuestas" class="nav-link" data-scroll-target="#muestra-para-proporciones-1-grupo-estudios-transversales-prevalencias-encuestas"><span class="header-section-number">1.1</span> 1. Muestra para Proporciones (1 grupo): Estudios transversales (prevalencias, encuestas)</a></li>
   <li><a href="#muestra-para-proporciones-2-grupos-estudios-anal%C3%ADticos" id="toc-muestra-para-proporciones-2-grupos-estudios-analíticos" class="nav-link" data-scroll-target="#muestra-para-proporciones-2-grupos-estudios-anal%C3%ADticos"><span class="header-section-number">1.2</span> 2. Muestra para Proporciones (2 grupos): Estudios analíticos</a></li>
+  <li>
+<a href="#epir-para-el-c%C3%A1lculo-muestral" id="toc-epir-para-el-cálculo-muestral" class="nav-link" data-scroll-target="#epir-para-el-c%C3%A1lculo-muestral"><span class="header-section-number">1.3</span> 3. EpiR para el cálculo muestral</a>
+  <ul class="collapse">
+<li><a href="#estudios-de-prevalencia" id="toc-estudios-de-prevalencia" class="nav-link" data-scroll-target="#estudios-de-prevalencia"><span class="header-section-number">1.3.1</span> 3.1 Estudios de Prevalencia</a></li>
+  <li><a href="#estudios-anal%C3%ADticos" id="toc-estudios-analíticos" class="nav-link" data-scroll-target="#estudios-anal%C3%ADticos"><span class="header-section-number">1.3.2</span> 3.2 Estudios analíticos</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#muestra-para-casos-y-controles" id="toc-muestra-para-casos-y-controles" class="nav-link" data-scroll-target="#muestra-para-casos-y-controles"><span class="header-section-number">1.4</span> Muestra para Casos y Controles</a>
+  <ul class="collapse">
+<li><a href="#estudios-experimentales" id="toc-estudios-experimentales" class="nav-link" data-scroll-target="#estudios-experimentales"><span class="header-section-number">1.4.1</span> 3.3 Estudios Experimentales</a></li>
+  </ul>
+</li>
+  <li><a href="#muestra-para-estudios-de-no-inferioridad" id="toc-muestra-para-estudios-de-no-inferioridad" class="nav-link" data-scroll-target="#muestra-para-estudios-de-no-inferioridad"><span class="header-section-number">1.5</span> Muestra para estudios de no inferioridad</a></li>
+  <li><a href="#estimaci%C3%B3n-de-un-par%C3%A1metro-poblacional-one-stage-cluster-sampling" id="toc-estimación-de-un-parámetro-poblacional-one-stage-cluster-sampling" class="nav-link" data-scroll-target="#estimaci%C3%B3n-de-un-par%C3%A1metro-poblacional-one-stage-cluster-sampling"><span class="header-section-number">1.6</span> Estimación de un parámetro poblacional (one-stage cluster sampling)</a></li>
+  <li><a href="#estimaci%C3%B3n-de-un-par%C3%A1metro-poblacional-two-stage-cluster-sampling" id="toc-estimación-de-un-parámetro-poblacional-two-stage-cluster-sampling" class="nav-link" data-scroll-target="#estimaci%C3%B3n-de-un-par%C3%A1metro-poblacional-two-stage-cluster-sampling"><span class="header-section-number">1.7</span> Estimación de un parámetro poblacional (two-stage cluster sampling)</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.8</span> References</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://deve105.github.io/me/edit/main/5_Sample.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li><li><a href="https://deve105.github.io/me/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://deve105.github.io/me/blob/main/5_Sample.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -308,6 +325,148 @@ NOTE: different sample sizes</code></pre>
 </div>
 </div>
 </div>
+</section><section id="epir-para-el-cálculo-muestral" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="epir-para-el-cálculo-muestral">
+<span class="header-section-number">1.3</span> 3. EpiR para el cálculo muestral</h2>
+<p>Otra forma más rápida de calcular el tamaño muestral es usando <code>EpiR</code></p>
+<section id="estudios-de-prevalencia" class="level3" data-number="1.3.1"><h3 data-number="1.3.1" class="anchored" data-anchor-id="estudios-de-prevalencia">
+<span class="header-section-number">1.3.1</span> 3.1 Estudios de Prevalencia</h3>
+<p>Por ejemplo: Se desea determinar la prevalencia por Dengue en Ica. La prevalencia en Perú es de 15% durante el 2025. ¿Cuántas personas deben ser evaluadas en Ica para tener 95% de certeza que la estimación estrá dentro del margen del +-20% del valor real del Perú? (En otras palabras entre el 12 al 18%)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Muestra para prevalencias
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Sin conocer la población.</li>
+</ul>
+<ul>
+<li>Si sabemos que la población de la comunidad a evaluar es 5,000 habitantes (corrección finita)</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section id="estudios-analíticos" class="level3" data-number="1.3.2"><h3 data-number="1.3.2" class="anchored" data-anchor-id="estudios-analíticos">
+<span class="header-section-number">1.3.2</span> 3.2 Estudios analíticos</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Muestra para Cohortes Prospectivas
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Se desea evaluar el impacto del uso nocturno de dispositivos electrónicos en el rendimiento académico. Los alumnos tendrán una evaluación basal y serán divididos en 2 grupos: 1) alumnos con uso de dispositivos electrónicos previo a dormir; 2) alumnos sin uso de dispositivos electrónicos previo a dormir. Se desea tener un 80% certeza de poder detectar un incremento de 1.5 veces el rendimiento académico malo con un nivel de confiabilidad del 0.05. Una tesis previa estimó la incidencia de rendimiento académico malo fue 20/100 .</p>
+</div>
+</div>
+</div>
+</section></section><section id="muestra-para-casos-y-controles" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="muestra-para-casos-y-controles">
+<span class="header-section-number">1.4</span> Muestra para Casos y Controles</h2>
+<p>Se desea evaluar evaluar la relación entre el consumo de marihuana y la depresión en estudiantes universitarios. Se comparará un grupo de alumnos diagnósticados con depresión y un grupo control de alumnos de la misma universidad. ¿Cuántos alumnos son necesarios para detectar un odds ratio (incremento) de 2, con una certeza del 80% de encontrar dicho incremento (poder), y nivel de confiabilidad de 0.05? Estudios previos determinaron que el consumo de marihuana es del 10% en estudiantes.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<section id="estudios-experimentales" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="estudios-experimentales">
+<span class="header-section-number">1.4.1</span> 3.3 Estudios Experimentales</h3>
+</section></section><section id="muestra-para-estudios-de-no-inferioridad" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="muestra-para-estudios-de-no-inferioridad">
+<span class="header-section-number">1.5</span> Muestra para estudios de no inferioridad</h2>
+<p>Se desea evaluar evaluar la eficacia de dos medicamentos para el tratamiento de la hipertensión. Asumiendo que la eficacia del medicamento A es del 85%, mientras que el medicamento B es del 65%. Se considera que una diferencia menor del 10% no es clínicamente relevante. Asumiendo un nivel de confiabilidad a una cola del 5% (0.05) y poder del 80%, ¿Cuántos pacientes se necesitan incluir en este estudio?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+</section><section id="estimación-de-un-parámetro-poblacional-one-stage-cluster-sampling" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="estimación-de-un-parámetro-poblacional-one-stage-cluster-sampling">
+<span class="header-section-number">1.6</span> Estimación de un parámetro poblacional (one-stage cluster sampling)</h2>
+<p>Se desea conocer la prevalencia real de HTLV-1 en zonas rurales de Ica. Se realizará un estudio transversal, donde todas los comunidades del departamento de Ica serán muestreados. Todas las familias dentro de cada comunidad serán muestreados (120 personas por comunidad). Un estudio previo determino que el coeficiente intracluster de correlación es del 0.2 (intracluster correlation coefficient). Si se desea saber con 95% de confiabilidad que el tamizaje estime la prevalencia real dentro del margen del 10% del valor real de la población. ¿Cuantas comunidades se necesitan muestrear? Un estudio previo mostro prevalencia del 15%.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+</section><section id="estimación-de-un-parámetro-poblacional-two-stage-cluster-sampling" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="estimación-de-un-parámetro-poblacional-two-stage-cluster-sampling">
+<span class="header-section-number">1.7</span> Estimación de un parámetro poblacional (two-stage cluster sampling)</h2>
+<p>Tenemos data jerarquica (Ica tiene comunidades[1º] e individuos[2º]). Prevalencia de HTLV-1 está estimada entre 3-5%. Coeficiente de correlación intracluster es de 0.02, nivel de confiabilidad del 95%, estimación de la prevalencia entre el 5% del valor real de la población y 20 individuos por comunidad.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+</section><section id="references" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="references">
+<span class="header-section-number">1.8</span> References</h2>
+<p><a href="https://cran.r-project.org/web/packages/epiR/vignettes/epiR_sample_size.html">epiR sample size</a></p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
